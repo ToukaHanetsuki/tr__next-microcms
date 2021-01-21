@@ -26,6 +26,11 @@ jobs:
           node-version: '14.x'
       - name: install modules
         run: npm install
+      - name: check env
+        run: echo $X_API_KEY . $ENDPOINT
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          ENDPOINT: ${{ secrets.ENDPOINT }}
       - name: export next
         run: npm run export
         env:
@@ -33,9 +38,9 @@ jobs:
           ENDPOINT: ${{ secrets.ENDPOINT }}
       - name: ftp deploy action
         uses: SamKirkland/FTP-Deploy-Action@2.0.0
-        env:                                        
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}     
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }} 
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }} 
-          LOCAL_DIR: ./                           
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          LOCAL_DIR: ./
           REMOTE_DIR: ""
