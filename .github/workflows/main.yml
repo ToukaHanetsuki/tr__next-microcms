@@ -30,7 +30,7 @@ jobs:
         run: npm run export
         env:
           X_API_KEY: ${{ secrets.X_API_KEY }}
-          SERVICE_ID: ${{ secrets.SERVICE_ID }}
+          ENDPOINT: ${{ secrets.ENDPOINT }}
       - name: ftp deploy action
         uses: SamKirkland/FTP-Deploy-Action@2.0.0
         env:                                        
