@@ -15,7 +15,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "yarn run build && next export"
+    "export": "npm run build && next export"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.1.2",
