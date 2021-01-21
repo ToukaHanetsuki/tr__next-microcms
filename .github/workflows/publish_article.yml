@@ -34,7 +34,7 @@ jobs:
       - name: export next
         run: npm run export
         env:
-          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_KEY: ${{ secrets.API_KEY }}
           ENDPOINT: ${{ secrets.ENDPOINT }}
       - name: ftp deploy action
         uses: SamKirkland/FTP-Deploy-Action@2.0.0
