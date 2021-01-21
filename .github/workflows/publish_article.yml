@@ -11,25 +11,28 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - name: setup node
+      - name: Setup Node
         uses: actions/setup-node@v1
         with:
           node-version: '14.x'
 
-      - name: install modules
+      - name: Install Modules
         run: npm install
 
-      - name: export next
+      - name: Export File
         run: npm run export
         env:
           API_KEY: ${{ secrets.API_KEY }}
           ENDPOINT: ${{ secrets.ENDPOINT }}
 
-      - name: ftp deploy action
-        uses: SamKirkland/FTP-Deploy-Action@2.0.0
-        env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          LOCAL_DIR: ./
-          REMOTE_DIR: ""
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          exclude: .git*
+            - .git*/**
+            -  **/.git*/**
+            - node_modules/**
+            - node_modules/**/*
